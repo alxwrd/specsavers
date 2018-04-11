@@ -12,3 +12,6 @@ def __get_token():
 
     if token_script:
         return token_script[0].attrs["data-integrity"]
+
+
+TOKEN = __get_token()
