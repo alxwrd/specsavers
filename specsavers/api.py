@@ -61,3 +61,6 @@ class Api:
             return store_details.json()
         except json.decoder.JSONDecodeError:
             return {}
+
+    def list_of_store_names(self, latitude, longitude):
+        return []

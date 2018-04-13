@@ -4,8 +4,8 @@ from specsavers.store import Store
 from specsavers.store import StoreList
 
 
-def locate(coords):
-    return StoreList(coords)
+def locate(latitude=None, longitude=None):
+    return StoreList.from_search(latitude, longitude)
 
 
 def find(store_name):

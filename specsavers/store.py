@@ -3,6 +3,7 @@ import specsavers
 
 from specsavers.api import Api
 
+
 class Store:
     api = Api
 
@@ -42,5 +43,15 @@ class Store:
 
 
 class StoreList:
+    api = Api
 
-    def __init__(self): ...
+    def __init__(self, store_names): ...
+
+    @classmethod
+    def from_search(cls, latitude=None, longitude=None):
+        if latitude is None or longitude is None:
+            raise ValueError("")
+
+        stores = cls.api().list_of_store_names(latitude, longitude)
+
+        return cls(stores)
