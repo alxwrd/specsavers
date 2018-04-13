@@ -5,7 +5,7 @@ _A Python wrapper around the Specsavers appointment booking API_
 >>> import specsavers
 
 # Find local stores
->>> stores = specsavers.locate((51.507879, -0.087732))
+>>> stores = specsavers.locate(latitude=51.507879, longitude=0.087732)
 
 # Closest / first store
 >>> stores[0]
