@@ -53,7 +53,7 @@ class Api:
                f"?url-name={store_name}")
 
         store_details = requests.get(
-                url, headers={"X-Access-Token": self.token})
+                url, headers={"X-Access-Token": self.__token})
 
         if store_details.status_code == 401:
             raise AuthenticationError("Unable to authenticate.")
