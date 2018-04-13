@@ -1,6 +1,8 @@
 # Specsavers :eyeglasses:
 _A Python wrapper around the Specsavers appointment booking API_
 
+[![Build Status](https://travis-ci.org/alxwrd/specsavers.svg?branch=master)](https://travis-ci.org/alxwrd/specsavers)
+
 ```python
 >>> import specsavers
 
