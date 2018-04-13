@@ -1,0 +1,14 @@
+language: python
+python:
+    - "3.3"
+    - "3.4"
+    - "3.5"
+    - "3.6"
+    - "nightly"
+before_install:
+    - pip install pipenv
+    - pipenv install --dev
+script:
+    - pycodestyle specsavers/
+    - pycodestyle tests/
+    - python -m unittest discover tests/
