@@ -3,11 +3,12 @@ import specsavers
 
 from specsavers.api import Api
 
-
 class Store:
-    api = Api()
+    api = Api
 
     def __init__(self, store_name, from_search=False):
+        self.api = self.api()
+
         store_name = store_name.lower()
 
         if not from_search:

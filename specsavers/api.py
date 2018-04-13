@@ -8,7 +8,7 @@ def retry_on_token_failure(func):
             result = func(*args)
         except AuthenticationError:
             api = args[0]
-            api.token = api.fetch_token()
+            api.__class__.__token = api.fetch_token()
             result = func(*args)
         return result
     return wrapper
@@ -20,9 +20,11 @@ class AuthenticationError(Exception):
 
 class Api:
     base_url = "https://www.specsavers.co.uk"
+    __token = ""
 
     def __init__(self):
-        self.token = self.fetch_token()
+        if not self.__class__.__token:
+            self.__class__.__token = self.fetch_token()
 
     def fetch_token(self):
         page = HTMLSession().get(f"{self.base_url}/book/nottingham")
