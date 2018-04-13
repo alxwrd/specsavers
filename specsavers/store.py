@@ -19,18 +19,12 @@ class Store:
 
         self.json = self.__fetch_store_details() if not from_search else {}
 
-        self.id = self.json.get("epos")
-        self.full_name = self.json.get("name")
-        self.type = self.json.get("business_type")
-        self.phone = self.json.get("phone", {}).get("number")
-        self.address = self.json.get("address")
-        self.coordinate = self.json.get("coordinate")
-
     def __getattr__(self, attr):
-        if not self.__dict__["json"]:
-            self.__dict__["json"] = self.__fetch_store_details()
+        if not self.json:
+            self.json = self.__fetch_store_details()
+
         try:
-            return self.__dict__[attr]
+            return self.json[attr]
         except KeyError:
             raise AttributeError(
                     (f"{self.__class__.__name__} object "
