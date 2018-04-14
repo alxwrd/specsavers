@@ -29,7 +29,7 @@ class Store:
         except KeyError:
             raise AttributeError(
                     (f"{self.__class__.__name__} object "
-                     f"has no attribute '{attr}'"))
+                     f"has no attribute '{attr}'")) from None
 
     def __fetch_store_details(self):
         details = self.api.fetch_store_details(self.name)
@@ -51,7 +51,7 @@ class StoreList:
     @classmethod
     def from_search(cls, latitude=None, longitude=None):
         if latitude is None or longitude is None:
-            raise ValueError("")
+            raise ValueError("Both 'latitude' and 'longitude' are required")
 
         stores = cls.api().list_of_store_names(latitude, longitude)
 
