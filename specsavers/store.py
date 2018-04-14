@@ -47,7 +47,8 @@ class StoreList:
             store = stores[0]
         except IndexError:
             raise ValueError(
-                "'stores' must be a list of 'str' or 'Store'") from None
+                "'stores' must be a list of 'str' or 'Store' "
+                "not an empty list") from None
 
         if isinstance(store, self.__class__):
             self.__stores = stores
@@ -63,6 +64,10 @@ class StoreList:
             raise ValueError("Both 'latitude' and 'longitude' are required")
 
         stores = cls.api().list_of_store_names(latitude, longitude)
+
+        if not stores:
+            raise LookupError(
+                    f"Unable to locate any stores at {latitude}, {longitude}")
 
         return cls(stores)
 
