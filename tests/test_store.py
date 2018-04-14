@@ -56,6 +56,6 @@ class TestStore(unittest.TestCase):
         store_list = self.specsavers.locate(
                 latitude=51.507879, longitude=0.087732)
 
-        store = store_list["strand"]
+        store = store_list["woolwich"]
 
         self.assertIsInstance(store, self.specsavers.Store)

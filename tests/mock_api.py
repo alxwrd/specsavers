@@ -43,4 +43,4 @@ class MockApi:
         return details
 
     def list_of_store_names(self, latitude, longitude):
-        return ["nottingham", "manchester"]
+        return ["woolwich", "barking", "eastham"]
