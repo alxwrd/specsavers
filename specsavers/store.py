@@ -63,8 +63,9 @@ class StoreList:
             return self.__class__([name for name in stores])
 
         if isinstance(item, int):
-            return Store(self.__stores[item])
+            return Store(self.__stores[item], from_search=True)
 
         if isinstance(item, str):
             if item in self.__stores:
-                return Store(self.__stores[self.__stores.index(item)])
+                store_index = self.__stores.index(item)
+                return Store(self.__stores[store_index], from_search=True)
