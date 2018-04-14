@@ -59,3 +59,17 @@ class TestStore(unittest.TestCase):
         store = store_list["woolwich"]
 
         self.assertIsInstance(store, self.specsavers.Store)
+
+    def test_store_list_iterable(self):
+        store_list = self.specsavers.locate(
+                latitude=51.507879, longitude=0.087732)
+
+        for store in store_list:
+            self.assertTrue(True)
+
+    def test_store_iterating_no_details(self):
+        store_list = self.specsavers.locate(
+                latitude=51.507879, longitude=0.087732)
+
+        for store in store_list:
+            self.assertEqual(store.json, {})
