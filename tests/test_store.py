@@ -73,3 +73,18 @@ class TestStore(unittest.TestCase):
 
         for store in store_list:
             self.assertEqual(store.json, {})
+
+    def test_store_list_items_keep_fetched_data(self):
+        store_list = self.specsavers.locate(
+                latitude=51.507879, longitude=0.087732)
+
+        # NOTE: This test doesn't fetch the Store object from the StoreList,
+        #        it instead accesses the object by index. This test ensures
+        #        that the Store correctly keeps it's information once fetched.
+
+        self.assertEqual(store_list[0].json, {})
+
+        store_list[0].epos
+
+        self.assertTrue(store_list[0].json,
+                f"{store_list[0]} does not have json populated")
