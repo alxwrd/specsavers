@@ -7,8 +7,8 @@ python:
     - "nightly"
 before_install:
     - pip install pipenv
-    - pipenv install --dev
+    - pipenv install --dev --skip-lock
 script:
-    - pycodestyle specsavers/
-    - pycodestyle tests/
-    - python -m unittest discover tests/
+    - pipenv run pycodestyle specsavers/
+    - pipenv run pycodestyle tests/
+    - pipenv run python -m unittest discover tests/
