@@ -9,16 +9,13 @@ class Store:
 
     def __init__(self, store_name, from_search=False):
         self.api = self.api()
-
-        store_name = store_name.lower()
+        self.name = store_name.lower()
+        self.json = {}
 
         if not from_search:
-            if not self.api.store_exists(store_name):
-                raise LookupError(f"The store '{store_name}' is not valid.")
-
-        self.name = store_name
-
-        self.json = self.__fetch_store_details() if not from_search else {}
+            if not self.api.store_exists(self.name):
+                raise LookupError(f"The store '{self.name}' is not valid.")
+            self.json = self.__fetch_store_details()
 
     def __getattr__(self, attr):
         if not self.json:
