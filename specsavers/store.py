@@ -42,8 +42,20 @@ class Store:
 class StoreList:
     api = Api
 
-    def __init__(self, store_names):
-        self.__stores = store_names
+    def __init__(self, stores):
+        try:
+            store = stores[0]
+        except IndexError:
+            raise ValueError(
+                "'stores' must be a list of 'str' or 'Store'") from None
+
+        if isinstance(store, self.__class__):
+            self.__stores = stores
+
+        elif isinstance(store, str):
+            self.__stores = [
+                Store(name, from_search=True)
+                for name in stores]
 
     @classmethod
     def from_search(cls, latitude=None, longitude=None):
@@ -57,12 +69,12 @@ class StoreList:
     def __getitem__(self, item):
         if isinstance(item, slice):
             stores = self.__stores[item]
-            return self.__class__([name for name in stores])
+            return self.__class__(stores)
 
         if isinstance(item, int):
-            return Store(self.__stores[item], from_search=True)
+            return self.__stores[item]
 
         if isinstance(item, str):
-            if item in self.__stores:
-                store_index = self.__stores.index(item)
-                return Store(self.__stores[store_index], from_search=True)
+            for store in self.__stores:
+                if item == store.name:
+                    return store
