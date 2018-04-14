@@ -68,7 +68,17 @@ class Api:
             return {}
 
     def list_of_store_names(self, latitude, longitude):
-        return []
+        html = self.fetch_store_select_page(latitude, longitude)
+
+        store_divs = html.find(".store-name")
+
+        return [
+            div.find("a", first=True).attrs["href"].replace("/stores/", "")
+            for div in store_divs]
 
     def fetch_store_select_page(self, latitude, longitude):
-        ...
+        page = HTMLSession().get(
+                f"{self.base_url}/stores/select-a-store/x"
+                f"/{latitude},{longitude}")
+
+        return page.html
