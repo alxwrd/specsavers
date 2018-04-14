@@ -27,9 +27,9 @@ class Api:
             self.__class__.__token = self.fetch_token()
 
     def fetch_token(self):
-        page = HTMLSession().get(f"{self.base_url}/book/nottingham")
+        html = self.fetch_booking_page()
 
-        script_tags = page.html.find("script")
+        script_tags = html.find("script")
 
         token_script = [
             element for element in script_tags
@@ -38,6 +38,11 @@ class Api:
         if not token_script:
             return ""
         return token_script[0].attrs["data-integrity"]
+
+    def fetch_booking_page(self):
+        page = HTMLSession().get(f"{self.base_url}/book/nottingham")
+
+        return page.html
 
     def store_exists(self, store_name):
         store_page = requests.head(f"{self.base_url}/book/{store_name}")
@@ -64,3 +69,6 @@ class Api:
 
     def list_of_store_names(self, latitude, longitude):
         return []
+
+    def fetch_store_select_page(self, latitude, longitude):
+        ...
