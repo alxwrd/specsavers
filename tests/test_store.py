@@ -86,5 +86,6 @@ class TestStore(unittest.TestCase):
 
         store_list[0].epos
 
-        self.assertTrue(store_list[0].json,
-                f"{store_list[0]} does not have json populated")
+        self.assertTrue(
+            store_list[0].json,
+            f"{store_list[0]} does not have json populated")
