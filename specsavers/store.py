@@ -45,7 +45,8 @@ class Store:
 class StoreList:
     api = Api
 
-    def __init__(self, store_names): ...
+    def __init__(self, store_names):
+        self.__stores = store_names
 
     @classmethod
     def from_search(cls, latitude=None, longitude=None):
@@ -55,3 +56,15 @@ class StoreList:
         stores = cls.api().list_of_store_names(latitude, longitude)
 
         return cls(stores)
+
+    def __getitem__(self, item):
+        if isinstance(item, slice):
+            stores = self.__stores[item]
+            return self.__class__([name for name in stores])
+
+        if isinstance(item, int):
+            return Store(self.__stores[item])
+
+        if isinstance(item, str):
+            if item in self.__stores:
+                return Store(self.__stores[self.__stores.index(item)])
