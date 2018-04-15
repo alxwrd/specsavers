@@ -37,6 +37,9 @@ class Store:
 
         return store
 
+    def __repr__(self):
+        return f"<Store name=\"{self.name}\">"
+
 
 class StoreList:
     api = Api
@@ -82,3 +85,11 @@ class StoreList:
             for store in self.__stores:
                 if item == store.name:
                     return store
+
+    def __repr__(self):
+        stores = str(
+            [repr(store) for store
+             in self.__stores]
+            ).replace("'", "")
+
+        return f"<{self.__class__.__name__}({stores})>"
