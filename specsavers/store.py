@@ -1,7 +1,11 @@
+from datetime import datetime
 import requests
+import maya
 import specsavers
 
 from specsavers.api import Api
+from specsavers.appointment import Appointment
+from specsavers.appointment import AppointmentType
 
 
 class Store:
@@ -21,6 +25,35 @@ class Store:
         if not self.json:
             self.json = self.__fetch_store_details()
         return object.__getattribute__(self, attr)
+
+    def appointments(self, date=None, kind=AppointmentType.AdultEyeTest):
+        date = self.__to_maya(date)
+
+        appointments = self.api.fetch_appointments(
+            store=self, date=date, kind=kind)
+
+        slots = appointments.get("content", {}).get("slots", [])
+
+        return [
+            Appointment(
+                slot["id"],
+                slot["date"]["start"],
+                slot["date"]["end"])
+            for slot in slots]
+
+    @staticmethod
+    def __to_maya(date):
+        mapping = {
+            str: lambda date: maya.when(date),
+            int: lambda date: maya.MayaDT(epoch=date),
+            maya.MayaDT: lambda date: data,
+            datetime: lambda date: maya.MayaDT.from_datetime(date)
+        }
+
+        try:
+            return mapping[type(date)]()
+        except KeyError:
+            return maya.now()
 
     def __fetch_store_details(self):
         details = self.api.fetch_store_details(self.url_name)
