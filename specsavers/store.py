@@ -9,12 +9,12 @@ class Store:
 
     def __init__(self, store_name, from_search=False):
         self.api = self.api()
-        self.name = store_name.lower()
+        self.url_name = store_name.lower()
         self.json = {}
 
         if not from_search:
-            if not self.api.store_exists(self.name):
-                raise LookupError(f"The store '{self.name}' is not valid.")
+            if not self.api.store_exists(self.url_name):
+                raise LookupError(f"The store '{self.url_name}' is not valid.")
             self.json = self.__fetch_store_details()
 
     def __getattr__(self, attr):
@@ -23,7 +23,7 @@ class Store:
         return object.__getattribute__(self, attr)
 
     def __fetch_store_details(self):
-        details = self.api.fetch_store_details(self.name)
+        details = self.api.fetch_store_details(self.url_name)
 
         stores = details.get("content", {}).get("stores", [])
 
@@ -38,7 +38,7 @@ class Store:
         return store
 
     def __repr__(self):
-        return f"<Store name=\"{self.name}\">"
+        return f"<Store name=\"{self.url_name}\">"
 
 
 class StoreList:
@@ -83,7 +83,7 @@ class StoreList:
 
         if isinstance(item, str):
             for store in self.__stores:
-                if item == store.name:
+                if item == store.url_name:
                     return store
 
     def __repr__(self):
