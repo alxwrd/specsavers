@@ -44,3 +44,28 @@ class MockApi:
 
     def list_of_store_names(self, latitude, longitude):
         return ["woolwich", "barking", "eastham"]
+
+    def fetch_appointments(self, store=None, date=None, kind=None):
+        details = {
+                "code": 200,
+                "locale": "gb_en",
+                "content": {
+                    "slots": [
+                        {
+                            "id": 5875547,
+                            "date": {
+                                "start": "2018-04-15T14:25:00+00:00",
+                                "end": "2018-04-15T14:50:00+00:00"
+                                }
+                            },
+                        {
+                            "id": 5875676,
+                            "date": {
+                                "start": "2018-04-15T14:50:00+00:00",
+                                "end": "2018-04-15T15:25:00+00:00"
+                                }
+                            }
+                        ]
+                    }
+                }
+        return details

@@ -101,3 +101,11 @@ class TestStore(unittest.TestCase):
         self.assertTrue(
             store_list[0].json,
             f"{store_list[0]} does not have json populated")
+
+    def test_getting_appointments(self):
+        store = self.specsavers.Store("nottingham")
+
+        appointments = store.appointments()
+
+        from specsavers.appointment import Appointment
+        self.assertIsInstance(appointments[0], Appointment)
