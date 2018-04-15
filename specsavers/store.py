@@ -51,7 +51,7 @@ class Store:
         }
 
         try:
-            return mapping[type(date)]()
+            return mapping[type(date)](date)
         except KeyError:
             return maya.now()
 

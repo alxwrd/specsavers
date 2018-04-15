@@ -3,9 +3,9 @@ from requests_html import HTMLSession
 
 
 def retry_on_token_failure(func):
-    def wrapper(*args):
+    def wrapper(*args, **kwargs):
         try:
-            result = func(*args)
+            result = func(*args, **kwargs)
         except AuthenticationError:
             api = args[0]
             api.__class__.__token = api.fetch_token()
@@ -57,15 +57,35 @@ class Api:
         url = (f"{self.base_url}/appointment/api/v1/store"
                f"?url-name={store_name}")
 
-        store_details = requests.get(
-                url, headers={"X-Access-Token": self.__token})
+        store_details = self.__make_request(url)
 
-        if store_details.status_code == 401:
-            raise AuthenticationError("Unable to authenticate.")
         try:
             return store_details.json()
         except json.decoder.JSONDecodeError:
             return {}
+
+    @retry_on_token_failure
+    def fetch_appointments(self, store, date, kind):
+        url = (f"{self.base_url}/appointment/api/v1/appointment/"
+               f"slot?epos={store.epos}&business-type=opticians&"
+               f"appointment-type={kind}"
+               f"&date-from={date.iso8601().split('T')[0]}")
+
+        appointment_details = self.__make_request(url)
+
+        try:
+            return appointment_details.json()
+        except json.decoder.JSONDecodeError:
+            return {}
+
+    def __make_request(self, url):
+        request = requests.get(
+            url, headers={"X-Access-Token": self.__token})
+
+        if request.status_code == 401:
+            raise AuthenticationError("Unable to authenticate.")
+
+        return request
 
     def list_of_store_names(self, latitude, longitude):
         html = self.fetch_store_select_page(latitude, longitude)
