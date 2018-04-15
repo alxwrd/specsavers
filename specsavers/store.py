@@ -20,13 +20,7 @@ class Store:
     def __getattr__(self, attr):
         if not self.json:
             self.json = self.__fetch_store_details()
-
-        try:
-            return self.json[attr]
-        except KeyError:
-            raise AttributeError(
-                    (f"{self.__class__.__name__} object "
-                     f"has no attribute '{attr}'")) from None
+        return object.__getattribute__(self, attr)
 
     def __fetch_store_details(self):
         details = self.api.fetch_store_details(self.name)
@@ -36,7 +30,12 @@ class Store:
         if not stores:
             return {}
 
-        return stores[0]
+        store = stores[0]
+
+        for key, value in store.items():
+            setattr(self, key, value)
+
+        return store
 
 
 class StoreList:
