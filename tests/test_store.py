@@ -25,6 +25,18 @@ class TestStore(unittest.TestCase):
 
         self.assertEqual(store.business_type, "opticians")
 
+    def test_store_has_attributes(self):
+        store = self.specsavers.Store("nottingham")
+
+        self.assertIn("business_type", dir(store))
+
+    def test_store_has_attributes_once_attr_accessed(self):
+        store = self.specsavers.Store("nottingham", from_search=True)
+
+        store.epos
+
+        self.assertIn("business_type", dir(store))
+
     def test_find_gets_store(self):
         store = self.specsavers.find("nottingham")
 
