@@ -37,9 +37,10 @@ class Store:
         return [
             Appointment(
                 slot["id"],
-                slot["date"]["start"],
-                slot["date"]["end"])
-            for slot in slots]
+                maya.parse(slot["date"]["start"]),
+                maya.parse(slot["date"]["end"]))
+            for slot in slots
+            if maya.parse(slot["date"]["start"]).day == date.day]
 
     @staticmethod
     def __to_maya(date):
