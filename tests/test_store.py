@@ -105,7 +105,7 @@ class TestStore(unittest.TestCase):
     def test_getting_appointments(self):
         store = self.specsavers.Store("nottingham")
 
-        appointments = store.appointments()
+        appointments = store.appointments("2018-04-15")
 
         from specsavers.appointment import Appointment
         self.assertIsInstance(appointments[0], Appointment)
