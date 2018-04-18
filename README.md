@@ -36,12 +36,29 @@ Please be responsible if you use this library: don't spam requests, and don't sp
 <Appointment time="09:20">
 ```
 
+## What?
+
+The Specsavers booking site is powered by a RESTful API. This library
+aims to provide a simple, easy, and Pythonic interface to that service.
+
+
 ## Why?
 
-Booking an appointment can be a hassle, especially if you need one last minute.
-Fortunately, for opticians appointments, the Specsavers booking site is
-powered by a RESTful API. This library aims to provide a simple, easy, and
-Pythonic interface to that service.
+I recently needed an eye test, and Specsavers has the ability to book online.
+I needed an appointment fairly last minute (two days before), but fortunately,
+there was _one_ slot left. I proceeded to make the appointment, but in the
+time it had taken to fill in my details: it had already been taken.
+
+I wanted to watch for new appointments to pop up, but frustratingly, every
+time I refreshed the page, I was taken back to the first step of the process.
+
+So I did some digging in the browsers dev tools. To my delight, I realised
+that the Specsavers booking site is powered by a RESTful API. I wrote some
+code to fetch appointments for the desired date; so I could watch to see if
+another appointment became available.
+
+In the end, I got an appointment for the day I wanted. I didn't want to let
+my learnings about the API go to waste though, so I created this package!
 
 
 ## Using
