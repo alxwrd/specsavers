@@ -65,7 +65,11 @@ my learnings about the API go to waste though, so I created this package!
 
 ### Installing
 
-_Not yet_.
+_Python 3.6 only_
+
+```shell
+pip3 install specsavers
+```
 
 
 ## Contributing
