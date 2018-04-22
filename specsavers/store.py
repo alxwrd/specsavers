@@ -82,17 +82,18 @@ class StoreList:
         try:
             store = stores[0]
         except IndexError:
-            raise ValueError(
-                "'stores' must be a list of 'str' or 'Store' "
-                "not an empty list") from None
+            store = None
 
-        if isinstance(store, self.__class__):
+        if isinstance(store, Store):
             self.__stores = stores
 
         elif isinstance(store, str):
             self.__stores = [
                 Store(name, from_search=True)
                 for name in stores]
+
+        else:
+            raise ValueError("'stores' must be a list of 'str' or 'Store'")
 
     @classmethod
     def from_search(cls, latitude=None, longitude=None):
