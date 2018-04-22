@@ -20,20 +20,20 @@ Please be responsible if you use this library: don't spam requests, and don't sp
 
 # Closest / first store
 >>> stores[0]
-<Store name="londonwall">
+<Store name='londonwall'>
 
 # Store by name
 >>> stores["strand"]
-<Store name="strand">
+<Store name='strand'>
 
 # Lookup directly by name
 >>>other_store = specsavers.find("nottingham")
 
 >>> other_store.appointments() # Implies today
-[<Appointment time="11:45">, <Appointment time="15:00">]
+[<Appointment date='Jan 9', time='11:45'>, <Appointment date='Jan 9', time='15:00'>]
 
 >>> other_store.appointments("tomorrow")[0]
-<Appointment time="09:20">
+<Appointment date='Jan 10', time='09:20'>
 ```
 
 ## What?

@@ -72,7 +72,7 @@ class Store:
         return store
 
     def __repr__(self):
-        return f"<Store name=\"{self.url_name}\">"
+        return f"<Store name='{self.url_name}'>"
 
 
 class StoreList:

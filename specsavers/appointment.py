@@ -13,7 +13,11 @@ class Appointment:
         self.end_time = end_time
 
     def __repr__(self):
-        return f"<Appointment time={self.start_time}>"
+        datetime = self.start_time.datetime()
+
+        return "<Appointment date='{date}', time='{time}'>".format(
+                date=datetime.strftime("%b %d"),
+                time=datetime.strftime("%H:%M"))
 
     def book(self, details):
         ...
