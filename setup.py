@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='specsavers',
     packages=['specsavers'],
-    version='',
+    version='1.0',
     description='A Python wrapper around the Specsavers appointment booking API',
     author='Alex Ward',
     author_email='alxwrd@googlemail.com',
