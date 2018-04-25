@@ -47,7 +47,7 @@ class Store:
         mapping = {
             str: lambda date: maya.when(date),
             int: lambda date: maya.MayaDT(epoch=date),
-            maya.MayaDT: lambda date: data,
+            maya.MayaDT: lambda date: date,
             datetime: lambda date: maya.MayaDT.from_datetime(date)
         }
 
