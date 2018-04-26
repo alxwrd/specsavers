@@ -11,6 +11,7 @@ def retry_on_token_failure(func):
             api.__class__.__token = api.fetch_token()
             result = func(*args)
         return result
+
     return wrapper
 
 
@@ -98,7 +99,7 @@ class Api:
 
     def fetch_store_select_page(self, latitude, longitude):
         page = HTMLSession().get(
-                f"{self.base_url}/stores/select-a-store/x"
-                f"/{latitude},{longitude}")
+            f"{self.base_url}/stores/select-a-store/x"
+            f"/{latitude},{longitude}")
 
         return page.html

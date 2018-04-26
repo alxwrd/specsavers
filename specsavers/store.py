@@ -1,7 +1,6 @@
 from datetime import datetime
-import requests
+
 import maya
-import specsavers
 
 from specsavers.api import Api
 from specsavers.appointment import Appointment
@@ -104,7 +103,7 @@ class StoreList:
 
         if not stores:
             raise LookupError(
-                    f"Unable to locate any stores at {latitude}, {longitude}")
+                f"Unable to locate any stores at {latitude}, {longitude}")
 
         return cls(stores)
 
@@ -125,6 +124,6 @@ class StoreList:
         stores = str(
             [repr(store) for store
              in self.__stores]
-            ).replace("'", "")
+        ).replace("'", "")
 
         return f"<{self.__class__.__name__}({stores})>"
