@@ -44,13 +44,13 @@ class TestStore(unittest.TestCase):
 
     def test_locate_gets_store_list(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         self.assertIsInstance(store_list, self.specsavers.StoreList)
 
     def test_store_list_indexable(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         store = store_list[0]
 
@@ -58,7 +58,7 @@ class TestStore(unittest.TestCase):
 
     def test_store_list_sliceable(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         store_slice = store_list[0:1]
 
@@ -66,7 +66,7 @@ class TestStore(unittest.TestCase):
 
     def test_store_list_lookupable(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         store = store_list["woolwich"]
 
@@ -74,21 +74,21 @@ class TestStore(unittest.TestCase):
 
     def test_store_list_iterable(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         for store in store_list:
             self.assertTrue(True)
 
     def test_store_iterating_no_details(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         for store in store_list:
             self.assertEqual(store.json, {})
 
     def test_store_list_items_keep_fetched_data(self):
         store_list = self.specsavers.locate(
-                latitude=51.507879, longitude=0.087732)
+            latitude=51.507879, longitude=0.087732)
 
         # NOTE: This test doesn't fetch the Store object from the StoreList,
         #        it instead accesses the object by index. This test ensures

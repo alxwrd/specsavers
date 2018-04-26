@@ -1,6 +1,3 @@
-import maya
-import specsavers
-
 from specsavers.api import Api
 
 
@@ -16,8 +13,8 @@ class Appointment:
         datetime = self.start_time.datetime()
 
         return "<Appointment date='{date}', time='{time}'>".format(
-                date=datetime.strftime("%b %d"),
-                time=datetime.strftime("%H:%M"))
+            date=datetime.strftime("%b %d"),
+            time=datetime.strftime("%H:%M"))
 
     def book(self, details):
         ...

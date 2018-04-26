@@ -1,5 +1,3 @@
-from requests_html import HTMLSession
-
 from specsavers.store import Store
 from specsavers.store import StoreList
 
