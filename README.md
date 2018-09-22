@@ -2,7 +2,7 @@
 _A Python wrapper around the Specsavers appointment booking API_
 
 [![Build Status](https://travis-ci.org/alxwrd/specsavers.svg?branch=master)](https://travis-ci.org/alxwrd/specsavers)
-[![Downloads](http://pepy.tech/badge/specsavers)](http://pepy.tech/project/specsavers)
+[![Downloads](https://img.shields.io/badge/dynamic/json.svg?url=https://pypistats.org/api/packages/specsavers/recent?mirrors=false&label=downloads&query=$.data.last_month&suffix=/month)](https://pypistats.org/packages/specsavers)
 
 > **IMPORTANT**: This project is NOT affiliated with Specsavers. Specsavers, nor this
 library, should not be held responsible for any misinformation gained regarding
