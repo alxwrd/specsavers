@@ -66,7 +66,7 @@ my learnings about the API go to waste though, so I created this package!
 
 ### Installing
 
-_Python 3.6 only_
+_Python 3.6+ only_
 
 ```shell
 pip3 install specsavers
@@ -88,21 +88,23 @@ branch (or branch off of it).
 
 ### Development setup
 
-This project uses [pipenv](https://docs.pipenv.org/) to manage
-dependencies, the standard library [unittest](https://docs.python.org/3/library/unittest.html)
+This project uses [poetry](https://python-poetry.org/docs/) to manage
+dependencies, pytest [pytest](https://docs.pytest.org/en/latest/)
 for tests, and [pycodestyle](https://github.com/PyCQA/pycodestyle) (formerly pep8)
 for style checks.
 
 ```bash
-$ pip install pipenv  # Install pipenv not installed
+# https://python-poetry.org/docs/#installation
+# (If you haven't already)
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
-$ git clone https://github.com/<yourname>/specsavers.git  # Clone the repo from your fork
-$ cd specsavers
-$ pipenv install --dev  # Install all dependencies
-$ pipenv shell  # Start the new virtual enviroment
+git clone https://github.com/<yourname>/specsavers.git  # Clone the repo from your fork
+cd specsavers
+poetry install # Install all dependencies
+poetry shell  # Start the new virtual enviroment
 
-$ # Make changes
+# Make changes
 
-$ python -m unittest discover tests  # Run tests
-$ pycodestyle specsavers/ tests/  # Check style
+pytest tests  # Run tests
+pycodestyle specsavers/ tests/  # Check style
 ```

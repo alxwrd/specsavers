@@ -1,14 +1,17 @@
 language: python
 python:
     - "3.6"
+    - "3.7"
+    - "3.8"
     - "nightly"
 matrix:
     allow_failures:
         - python: "nightly"
 before_install:
-    - pip install pipenv
-    - pipenv install --dev --skip-lock
+    - pip install poetry
+install:
+    - poetry install
 script:
-    - pipenv run pycodestyle specsavers/
-    - pipenv run pycodestyle tests/
-    - pipenv run python -m unittest discover tests/
+    - poetry run pycodestyle specsavers/
+    - poetry run pycodestyle tests/
+    - poetry run pytest tests/
